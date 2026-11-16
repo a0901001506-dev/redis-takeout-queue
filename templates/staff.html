@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block title %}店員操作台{% endblock %}
+{% block page_class %}staff-page{% endblock %}
+{% block view %}staff{% endblock %}
+{% block content %}
+  <header class="staff-header">
+    <div class="container header-inner">
+      <strong class="brand">外帶取餐</strong>
+      <nav class="header-nav" aria-label="店員快捷連結">
+        <a class="header-link" href="/order" target="_blank" rel="noopener">顧客點餐 <span aria-hidden="true">↗</span></a>
+        <a class="header-link" href="/order" target="_blank" rel="noopener">顧客點餐與取餐 <span aria-hidden="true">↗</span></a>
+      </nav>
+    </div>
+  </header>
+  <main class="container staff-main">
+    <div class="page-heading">
+      <h1>店員操作台</h1>
+      <p class="sync" data-sync role="status">連線中</p>
+    </div>
+    <div class="staff-queues">
+        <p id="action-error" class="error-message" role="alert" hidden></p>
+        <section class="staff-panel" aria-labelledby="preparing-title">
+          <div class="panel-heading">
+            <h2 id="preparing-title">準備中</h2>
+            <span class="count" data-count="preparing"></span>
+          </div>
+          <ul class="order-list" data-list="preparing" aria-label="準備中的訂單"></ul>
+          <p class="empty" data-empty="preparing">讀取中…</p>
+        </section>
+        <section class="staff-panel" aria-labelledby="ready-title">
+          <div class="panel-heading">
+            <h2 id="ready-title">可取餐</h2>
+            <span class="count" data-count="ready"></span>
+          </div>
+          <ul class="order-list" data-list="ready" aria-label="可取餐的訂單"></ul>
+          <p class="empty" data-empty="ready">讀取中…</p>
+        </section>
+        <details class="staff-panel history">
+          <summary class="panel-heading">
+            <span class="section-title">已取餐</span>
+            <span class="count" data-count="collected"></span>
+          </summary>
+          <ul class="order-list" data-list="collected" aria-label="已取餐的訂單"></ul>
+          <p class="empty" data-empty="collected">讀取中…</p>
+        </details>
+    </div>
+  </main>
+{% endblock %}

@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>外帶取餐叫號展示</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='demo.css') }}">
+</head>
+<body>
+  <header>
+    <h1>外帶取餐叫號展示</h1>
+    <a class="restart" href="{{ url_for('demo') }}">重新開始</a>
+  </header>
+  <main>
+    <section aria-labelledby="customer-heading">
+      <h2 id="customer-heading">顧客點餐與取餐</h2>
+      <iframe title="顧客點餐與取餐" src="{{ url_for('ordering', demo=demo_id) }}"></iframe>
+    </section>
+    <section aria-labelledby="staff-heading">
+      <h2 id="staff-heading">店員操作</h2>
+      <iframe title="店員操作" src="{{ url_for('staff', demo=demo_id) }}"></iframe>
+    </section>
+  </main>
+</body>
+</html>

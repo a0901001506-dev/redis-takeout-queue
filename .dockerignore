@@ -1,0 +1,9 @@
+*
+!requirements.txt
+!app.py
+!redis_scripts/
+!redis_scripts/**
+!templates/
+!templates/**
+!static/
+!static/**

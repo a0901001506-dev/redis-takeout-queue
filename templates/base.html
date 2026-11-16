@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}{% endblock %}｜外帶取餐</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <script src="{{ url_for('static', filename='app.js') }}" defer></script>
+</head>
+<body class="{% block page_class %}{% endblock %}" data-view="{% block view %}{% endblock %}">
+  {% block content %}{% endblock %}
+  <noscript><p class="noscript">請啟用 JavaScript 以查看和更新訂單。</p></noscript>
+</body>
+</html>

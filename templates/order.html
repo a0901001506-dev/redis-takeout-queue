@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block title %}顧客點餐與取餐{% endblock %}
+{% block page_class %}order-page{% endblock %}
+{% block view %}order{% endblock %}
+{% block content %}
+  <header class="staff-header">
+    <div class="container header-inner">
+      <strong class="brand">外帶取餐</strong>
+      <p class="sync" data-sync role="status">連線中</p>
+    </div>
+  </header>
+  <main class="container order-main">
+    <div class="page-heading">
+      <h1>顧客點餐</h1>
+    </div>
+    <div class="customer-layout">
+    <div class="customer-entry">
+    <form id="customer-order-form" class="customer-order" data-max-quantity="{{ max_quantity }}">
+      <section class="entry-panel" aria-labelledby="menu-title">
+        <h2 id="menu-title">選擇餐點</h2>
+        <ul class="menu-list">
+          {% for id, name in menu.items() %}
+          <li class="menu-item" data-menu-item="{{ id }}">
+            <strong>{{ name }}</strong>
+            <div class="quantity-picker" role="group" aria-label="{{ name }}份數">
+              <button class="button quantity-button" type="button" data-remove="{{ id }}" aria-label="減少一份{{ name }}" disabled>−</button>
+              <output class="quantity" data-quantity="{{ id }}" aria-label="{{ name }}份數">0</output>
+              <button class="button quantity-button" type="button" data-add="{{ id }}" aria-label="增加一份{{ name }}">+</button>
+            </div>
+          </li>
+          {% endfor %}
+        </ul>
+      </section>
+      <section class="entry-panel cart-panel" aria-labelledby="cart-title">
+        <h2 id="cart-title">本次訂單</h2>
+        <p id="cart-empty" class="empty">請先選擇餐點。</p>
+        <ul id="cart-items" class="cart-items" aria-live="polite"></ul>
+        <button id="submit-order" class="button primary" type="submit" disabled>送出訂單</button>
+        <p id="order-error" class="error-message" role="alert" hidden></p>
+      </section>
+    </form>
+    <section id="ticket-receipt" class="ticket-receipt" role="status" hidden>
+      <h2>已送出訂單</h2>
+      <p class="ticket-caption">你的取餐號碼</p>
+      <strong id="ticket-number" class="order-number"></strong>
+      <p>請留意此頁的取餐狀態。</p>
+    </section>
+    </div>
+    <section id="pickup-board" aria-labelledby="pickup-title">
+      <h2 id="pickup-title">取餐狀態</h2>
+      <div class="board-queues">
+        <section class="board-panel ready-board" aria-labelledby="ready-title">
+          <h3 id="ready-title">可取餐</h3>
+          <ul class="ticket-list" data-list="ready" aria-live="polite" aria-label="可取餐的號碼"></ul>
+          <p class="empty" data-empty="ready">讀取中…</p>
+        </section>
+        <section class="board-panel preparing-board" aria-labelledby="preparing-title">
+          <h3 id="preparing-title">準備中</h3>
+          <ul class="ticket-list" data-list="preparing" aria-live="polite" aria-label="準備中的號碼"></ul>
+          <p class="empty" data-empty="preparing">讀取中…</p>
+        </section>
+      </div>
+      <p class="board-note">號碼依點餐順序發放，餐點完成後即叫號。</p>
+    </section>
+    </div>
+  </main>
+{% endblock %}
