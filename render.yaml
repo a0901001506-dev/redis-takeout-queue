@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: redis-takeout-queue
+    runtime: python
+    plan: free
+    region: singapore
+    buildCommand: pip install -r requirements.txt gunicorn
+    startCommand: gunicorn --bind 0.0.0.0:$PORT --worker-class gthread --threads 16 app:app
+    healthCheckPath: /api/state
+    envVars:
+      - key: REDIS_URL
+        fromService:
+          type: keyvalue
+          name: redis-takeout-demo-store
+          property: connectionString
+  - type: keyvalue
+    name: redis-takeout-demo-store
+    plan: free
+    region: singapore
+    ipAllowList: []
